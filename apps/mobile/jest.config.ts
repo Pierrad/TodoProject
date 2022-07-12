@@ -14,4 +14,4 @@ module.exports = {
       'react-native/jest/assetFileTransformer.js'
     ),
   },
-};
+}

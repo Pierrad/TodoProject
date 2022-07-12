@@ -1,16 +1,24 @@
-import styled from 'styled-components';
-import NxWelcome from './nx-welcome';
-
-const StyledApp = styled.div`
-  // Your style here
-`;
+import React from 'react'
+import { GlobalStyles } from '@todo-project/themes'
+import { ThemeProvider } from '@mui/material/styles'
+import { ThemeProvider as StyledThemeProvider } from 'styled-components'
+import Layout from './layouts'
+import { BrowserRouter } from 'react-router-dom'
+import { muiTheme } from '../themes'
 
 export function App() {
   return (
-    <StyledApp>
-      <NxWelcome title="web" />
-    </StyledApp>
-  );
+    <React.Fragment>
+      <GlobalStyles />
+      <StyledThemeProvider theme={muiTheme()}>
+        <ThemeProvider theme={muiTheme()}>
+          <BrowserRouter>
+            <Layout />
+          </BrowserRouter>
+        </ThemeProvider>
+      </StyledThemeProvider>
+    </React.Fragment>
+  )
 }
 
-export default App;
+export default App

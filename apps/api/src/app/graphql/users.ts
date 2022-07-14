@@ -6,14 +6,14 @@ const saltRounds = 10;
 export const UserSchema = `
   type User {
     _id: ID!
-    username: String
-    email: String
-    password: String
+    username: String!
+    email: String!
+    password: String!
     createdAt: String!
   }
 `
 
-export const UserMutation = `
+export const UserOperation = `
   input UserInput {
     username: String!
     email: String!
@@ -39,6 +39,9 @@ export const UserResolvers = {
   Mutation: {
     register: async (parent: unknown, args) => {
       const { username, email, password } = args.user;
+      if (await User.findOne({ email })) {
+        throw new Error("Email already exists");
+      }
       const hashedPassword = await bcrypt.hash(password, saltRounds);
       return User.create({ username, email, password: hashedPassword });
     },

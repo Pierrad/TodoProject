@@ -1,13 +1,31 @@
 import { ApolloServer, gql } from "apollo-server-express";
-import { UserSchema, UserMutation, UserResolvers } from './users';
+import { GroupOperation, GroupResolvers, GroupSchema } from "./groups";
+import { TaskOperation, TaskResolvers, TaskSchema } from "./tasks";
+import { UserSchema, UserOperation, UserResolvers } from './users';
 
 
 export const apolloServer = new ApolloServer({
   typeDefs: gql`
     ${UserSchema}
-    ${UserMutation}
+    ${UserOperation}
+
+    ${TaskSchema}
+    ${TaskOperation}
+
+    ${GroupSchema}
+    ${GroupOperation}
   `,
   resolvers: {
-    ...UserResolvers
+    Query: {
+      ...UserResolvers.Query,
+      ...TaskResolvers.Query,
+      ...GroupResolvers.Query,
+    },
+    Mutation: {
+      ...UserResolvers.Mutation,
+      ...TaskResolvers.Mutation,
+      ...GroupResolvers.Mutation,
+    },
   },
+  debug: true,
 });

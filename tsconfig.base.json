@@ -15,6 +15,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@todo-project/i18n": ["libs/i18n/src/index.ts"],
       "@todo-project/themes": ["libs/themes/src/index.ts"]
     }
   },

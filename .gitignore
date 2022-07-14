@@ -101,3 +101,5 @@ buck-out/
 
 apps/mobile-e2e/artifacts
 apps/mobile-e2e/artifacts
+
+.vscode/

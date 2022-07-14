@@ -1,5 +1,10 @@
 import styled from 'styled-components'
 import ContainerC from '@mui/material/Container'
+import HeaderC from '../components/Header'
+import NavBar from '../components/NavBar'
+
+
+const drawerWidth = 240;
 
 export const Container = styled(ContainerC)`
   min-height: 100vh;
@@ -12,4 +17,25 @@ export const Container = styled(ContainerC)`
   ${(props) => props.theme.breakpoints.up('md')} {
     max-width: none;
   }
+`
+
+export const Main = styled.div<{ open: boolean }>`
+  flex-grow: 1;
+  margin-left: ${({ open }) => (open ? drawerWidth : 0)}px;
+`
+
+export const Header = styled(HeaderC)<{ open: boolean }>`
+  display: flex;
+  padding-left: ${({ open }) => (open ? drawerWidth : 0)}px;
+`
+
+export const Navigation = styled(NavBar)<{ open: boolean }>`
+  width: ${(props) => (props.open ? `calc(100% - ${drawerWidth}px)` : 0)};
+  margin-left: ${drawerWidth}px;
+`
+
+export const Content = styled.div`
+  flex-grow: 1;
+  margin-top: 64px;
+  padding: 24px;
 `

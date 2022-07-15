@@ -27,6 +27,7 @@ export const Main = styled.div<{ open: boolean }>`
 export const Header = styled(HeaderC)<{ open: boolean }>`
   display: flex;
   padding-left: ${({ open }) => (open ? drawerWidth : 0)}px;
+  background-color: ${({ theme }) => theme.palette.primary.main};
 `
 
 export const Navigation = styled(NavBar)<{ open: boolean }>`
@@ -38,4 +39,7 @@ export const Content = styled.div`
   flex-grow: 1;
   margin-top: 64px;
   padding: 24px;
+  max-width: 1080px;
+  margin-left: auto;
+  margin-right: auto;
 `

@@ -3,15 +3,16 @@ import React from 'react'
 import * as SC from './styled'
 
 type LinkProps = {
+  className?: string,
   to: string,
   children: React.ReactNode,
 }
 
 const Link = (props: LinkProps) => {
-  const { to, children } = props
+  const { className, to, children } = props
 
   return (
-    <SC.Container to={to}>
+    <SC.Container to={to} className={className}>
       {children}
     </SC.Container>
   )

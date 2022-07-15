@@ -19,7 +19,7 @@ const typography = {
   h3: {
     fontFamily: 'Poppins, serif',
     fontSize: '2.4rem',
-    fontWeight: 600,
+    fontWeight: 500,
     lineHeight: 1.4,
   },
   h4: {
@@ -39,6 +39,10 @@ const typography = {
     fontSize: '1.4rem',
     fontWeight: 600,
     lineHeight: 1.25,
+  },
+  subtitle1: {
+    fontFamily: 'Poppins, sans-serif',
+    fontSize: '1rem',
   },
   body1: {
     fontFamily: 'Poppins, sans-serif',

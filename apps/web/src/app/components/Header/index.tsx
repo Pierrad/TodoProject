@@ -1,7 +1,6 @@
 import React from 'react'
-import { AppBar, IconButton, Toolbar, Typography } from '@mui/material'
+import { AppBar, IconButton, Toolbar } from '@mui/material'
 import MenuIcon from '@mui/icons-material/Menu';
-import { useTranslation } from 'react-i18next';
 
 type HeaderProps = {
   className?: string,
@@ -11,7 +10,6 @@ type HeaderProps = {
 
 const Header = (props: HeaderProps) => {
   const { className, open, onMenuClick } = props
-  const { t } = useTranslation()
   
   return (
     <AppBar position="fixed" className={className}>
@@ -25,9 +23,6 @@ const Header = (props: HeaderProps) => {
         >
           <MenuIcon />
         </IconButton>
-        <Typography variant="h6" noWrap component="div">
-          {t('header_title')}
-        </Typography>
       </Toolbar>
     </AppBar>
   )

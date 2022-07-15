@@ -1,9 +1,10 @@
 import React from 'react'
-import { Divider, Drawer, IconButton, List, ListItem, ListItemIcon, ListItemText, useTheme } from '@mui/material'
+import { Divider, Drawer, IconButton, List, ListItem, ListItemIcon, ListItemText } from '@mui/material'
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
-import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import HomeIcon from '@mui/icons-material/Home';
 import Link from '../Link'
+
+import * as SC from './styled'
 
 const drawerWidth = 240;
 
@@ -15,7 +16,6 @@ type NavBarProps = {
 
 const NavBar = (props: NavBarProps) => {
   const { className, open, onMenuClick } = props
-  const theme = useTheme();
   return (
     <Drawer
       sx={{
@@ -31,11 +31,12 @@ const NavBar = (props: NavBarProps) => {
       open={open}
       className={className}
     >
-      <div>
+      <SC.Top>
         <IconButton onClick={onMenuClick}>
-          {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
+          <ChevronLeftIcon />
         </IconButton>
-      </div>
+        Fermer le menu
+      </SC.Top>
       <Divider />
       <List>
         <ListItem key={0} disablePadding>

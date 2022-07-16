@@ -21,6 +21,7 @@ const TaskDetailDialog = (props: TaskDetailDialogProps) => {
     <SC.Container className={className} open={open} onClose={onClose}>
       <SC.Title>{task.name}</SC.Title>
       <SC.Content>
+        <SC.Description>{task.description}</SC.Description>
         <SC.Date>{task.dueDate}</SC.Date>
       </SC.Content>
     </SC.Container>

@@ -14,15 +14,14 @@ const Layout = () => {
   }
 
   return (
-    <SC.Container>
-      <SC.Navigation
-        open={open}
+    <SC.Container>      
+      <SC.Header
         onMenuClick={onMenuClick}
+        open={open}
       />
       <SC.Main open={open}>
-        <SC.Header
+        <SC.Navigation
           open={open}
-          onMenuClick={onMenuClick}
         />
         <SC.Content>
           <Routes>

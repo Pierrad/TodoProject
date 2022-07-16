@@ -1,28 +1,34 @@
 import React from 'react'
-import { Divider, Drawer, IconButton, List, ListItem, ListItemIcon, ListItemText } from '@mui/material'
-import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
+import { ListItemText, useMediaQuery, useTheme } from '@mui/material'
 import HomeIcon from '@mui/icons-material/Home';
 import Link from '../Link'
 
 import * as SC from './styled'
+import { useLocation } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 const drawerWidth = 240;
 
 type NavBarProps = {
   className?: string,
   open: boolean,
-  onMenuClick: () => void,
 }
 
 const NavBar = (props: NavBarProps) => {
-  const { className, open, onMenuClick } = props
+  const { className, open,  } = props
+  const location = useLocation()
+  const { t } = useTranslation()
+  const theme = useTheme()
+  const isDesktop = useMediaQuery(theme.breakpoints.up('sm'));
+
+
   return (
-    <Drawer
+    <SC.Nav
       sx={{
         width: drawerWidth,
         flexShrink: 0,
         '& .MuiDrawer-paper': {
-          width: drawerWidth,
+          width: isDesktop ? drawerWidth : '100%',
           boxSizing: 'border-box',
         },
       }}
@@ -31,24 +37,17 @@ const NavBar = (props: NavBarProps) => {
       open={open}
       className={className}
     >
-      <SC.Top>
-        <IconButton onClick={onMenuClick}>
-          <ChevronLeftIcon />
-        </IconButton>
-        Fermer le menu
-      </SC.Top>
-      <Divider />
-      <List>
-        <ListItem key={0} disablePadding>
+      <SC.NavList>
+        <SC.NavListItem key={0} disablePadding active={location.pathname === '/dashboard'}>
           <Link to="/dashboard">
-            <ListItemIcon>
+            <SC.Icon>
               <HomeIcon />
-            </ListItemIcon>
-            <ListItemText primary="Dashboard" />
+            </SC.Icon>
+            <ListItemText primary={t('dashboard')} />
           </Link>
-        </ListItem>
-      </List>
-    </Drawer>
+        </SC.NavListItem>
+      </SC.NavList>
+    </SC.Nav>
   )
 }
 

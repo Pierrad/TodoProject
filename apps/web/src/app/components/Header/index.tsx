@@ -1,6 +1,6 @@
 import React from 'react'
 import { AppBar, IconButton, Toolbar } from '@mui/material'
-import MenuIcon from '@mui/icons-material/Menu';
+import { ArrowBack, ArrowForward } from '@mui/icons-material';
 
 type HeaderProps = {
   className?: string,
@@ -19,9 +19,8 @@ const Header = (props: HeaderProps) => {
           aria-label="open drawer"
           onClick={onMenuClick}
           edge="start"
-          sx={{ mr: 2, ...(open && { display: 'none' }) as any }}
         >
-          <MenuIcon />
+          {open ? <ArrowBack /> : <ArrowForward />}
         </IconButton>
       </Toolbar>
     </AppBar>

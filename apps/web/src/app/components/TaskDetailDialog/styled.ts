@@ -8,9 +8,15 @@ export const Title = styled(DialogTitle)``
 
 export const Content = styled.div`
   display: flex;
+  flex-direction: column;
   padding: 24px;
 `
 
-export const Date = styled.div`
+export const Description = styled.p`
   ${(props) => ({ ...props.theme.typography.body1 })}
+  margin-bottom: 1rem;
+`
+
+export const Date = styled.div`
+  ${(props) => ({ ...props.theme.typography.body2 })}
 `

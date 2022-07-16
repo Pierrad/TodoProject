@@ -8,18 +8,21 @@ const Dashboard = () => {
       status: true,
       onChange: () => {console.log('Task 1')},
       dueDate: '2020-01-01',
+      description: 'This is a task description',
     },
     {
       name: 'Task 2',
       status: false,
       onChange: () => {console.log('Task 2')},
       dueDate: '2020-01-01',
+      description: 'This is a task description',
     },
     {
       name: 'Task 3',
       status: false,
       onChange: () => {console.log('Task 3')},
       dueDate: '2020-01-01',
+      description: 'This is a task description',
     },
   ]
   
@@ -28,7 +31,7 @@ const Dashboard = () => {
       <TaskBoard
         title="My todo list"
         tasks={tasks}
-        ctaLabel="Add task"
+        completedTasks={tasks}
       />
     </div>
   )

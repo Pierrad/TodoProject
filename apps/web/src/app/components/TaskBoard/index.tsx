@@ -1,5 +1,8 @@
+import { ExpandLess, ExpandMore } from '@mui/icons-material'
+import { Collapse } from '@mui/material'
 import React, { useState } from 'react'
-import AddTaskDialog from '../AddTaskDialog'
+import { useTranslation } from 'react-i18next'
+import AddTask from '../AddTask'
 import Task, { TaskProps } from '../Task'
 import TaskDetailDialog from '../TaskDetailDialog'
 
@@ -9,19 +12,16 @@ type TaskBoardProps = {
   className?: string,
   title: string,
   tasks: TaskProps[],
-  ctaLabel: string,
+  completedTasks?: TaskProps[],
 }
 
 const TaskBoard = (props: TaskBoardProps) => {
-  const { className, title, tasks, ctaLabel } = props
+  const { className, title, tasks, completedTasks } = props
+  const { t } = useTranslation()
   const [currentTask, setCurrentTask] = useState<TaskProps | null>(null)
-  const [isAddTaskDialogOpen, setIsAddTaskDialogOpen] = useState(false)
   const [isTaskDetailDialogOpen, setIsTaskDetailDialogOpen] = useState(false)
+  const [hasOpenCompletedTasks, setHasOpenCompletedTasks] = useState(false)
 
-
-  const handleAddTaskDialog = () => {
-    setIsAddTaskDialogOpen(!isAddTaskDialogOpen)
-  }
 
   const handleTaskDetailDialog = (task: TaskProps) => {
     setCurrentTask(task)
@@ -31,13 +31,27 @@ const TaskBoard = (props: TaskBoardProps) => {
   return (
     <SC.Container className={className}>
       <SC.Title>{title}</SC.Title>
+      <AddTask />
       <SC.Tasks>
         {tasks.map((task, index) => (
           <Task key={index} {...task} onClick={() => handleTaskDetailDialog(task)} />
         ))}
       </SC.Tasks>
-      <SC.AddTask variant="outlined" onClick={handleAddTaskDialog}>{ctaLabel}</SC.AddTask>
-      <AddTaskDialog onClose={handleAddTaskDialog} open={isAddTaskDialogOpen} />
+      {completedTasks && (
+        <div>
+          <SC.CompletedTasksTitle onClick={() => setHasOpenCompletedTasks(!hasOpenCompletedTasks)}>
+            {t('completedTasks', { count: completedTasks.length })}
+            {hasOpenCompletedTasks ? <ExpandLess /> : <ExpandMore />}
+          </SC.CompletedTasksTitle>
+          <Collapse in={hasOpenCompletedTasks} timeout="auto">
+            <SC.CompletedTasks>
+              {completedTasks.map((task, index) => (
+                <Task key={index} {...task} />
+              ))}
+            </SC.CompletedTasks>
+          </Collapse>
+        </div>
+      )}
       <TaskDetailDialog onClose={() => setIsTaskDetailDialogOpen(false)} open={isTaskDetailDialogOpen} task={currentTask} />
     </SC.Container>
   )

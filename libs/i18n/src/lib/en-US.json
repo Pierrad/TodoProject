@@ -1,5 +1,11 @@
 {
   "translation": {
-    "header_title": "Today"
+    "header_title": "Today",
+    "dashboard": "My tasks",
+    "completedTasks": "Completed tasks ({{count}})",
+    "cancel": "Cancel",
+    "add": "Add",
+    "add_task_name_placeholder": "Example: Buy milk",
+    "add_task_description_placeholder": "Description"
   }
 }

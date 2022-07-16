@@ -44,9 +44,17 @@ const typography = {
     fontFamily: 'Poppins, sans-serif',
     fontSize: '1rem',
   },
+  subtitle2: {
+    fontFamily: 'Poppins, sans-serif',
+    fontSize: '0.8rem',
+  },
   body1: {
     fontFamily: 'Poppins, sans-serif',
     fontSize: '1.2rem',
+  },
+  body2: {
+    fontFamily: 'Poppins, sans-serif',
+    fontSize: '1rem',
   },
 }
 

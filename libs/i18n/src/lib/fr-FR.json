@@ -6,6 +6,8 @@
     "cancel": "Annuler",
     "add": "Ajouter",
     "add_task_name_placeholder": "Ex: Réviser le cours de HTML",
-    "add_task_description_placeholder": "Description"
+    "add_task_description_placeholder": "Description",
+    "navBar_contextMenu_edit": "Modifier",
+    "navBar_contextMenu_delete": "Supprimer"
   }
 }

@@ -6,6 +6,8 @@
     "cancel": "Cancel",
     "add": "Add",
     "add_task_name_placeholder": "Example: Buy milk",
-    "add_task_description_placeholder": "Description"
+    "add_task_description_placeholder": "Description",
+    "navBar_contextMenu_edit": "Edit",
+    "navBar_contextMenu_delete": "Delete"
   }
 }

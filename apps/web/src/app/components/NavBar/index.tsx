@@ -1,11 +1,14 @@
 import React from 'react'
-import { ListItemText, useMediaQuery, useTheme } from '@mui/material'
-import HomeIcon from '@mui/icons-material/Home';
-import Link from '../Link'
+import { Button, useMediaQuery, useTheme } from '@mui/material'
+import HomeIcon from '@mui/icons-material/Home'
+import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted'
+import { useLocation } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
+import NavBarItem from '../NavBarItem'
+import NavBarItemCollapsible from '../NavBarItemCollapsible'
 
 import * as SC from './styled'
-import { useLocation } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
+import { Add } from '@mui/icons-material'
 
 const drawerWidth = 240;
 
@@ -38,15 +41,40 @@ const NavBar = (props: NavBarProps) => {
       className={className}
     >
       <SC.NavList>
-        <SC.NavListItem key={0} disablePadding active={location.pathname === '/dashboard'}>
-          <Link to="/dashboard">
-            <SC.Icon>
-              <HomeIcon />
-            </SC.Icon>
-            <ListItemText primary={t('dashboard')} />
-          </Link>
-        </SC.NavListItem>
+        <NavBarItem isActive={location.pathname === '/dashboard'} to="/dashboard" label={t('dashboard')} icon={<HomeIcon />} />
+        <NavBarItemCollapsible
+          label="IUT"
+          items={
+            [
+              {
+                to: '/iut/1',
+                label: 'IUT 1',
+                icon: <FormatListBulletedIcon />,
+                isActive: location.pathname.startsWith('/iut/1'),
+                canBeEdited: true,
+              },
+              {
+                to: '/iut/2',
+                label: 'IUT 2',
+                icon: <FormatListBulletedIcon />,
+                isActive: location.pathname.startsWith('/iut/2'),
+                canBeEdited: true,
+              },
+              {
+                to: '/iut/3',
+                label: 'IUT 3',
+                icon: <FormatListBulletedIcon />,
+                isActive: location.pathname.startsWith('/iut/3'),
+                canBeEdited: true,
+              },
+            ]
+          }
+        />
       </SC.NavList>
+      <SC.AddCategory variant="text">
+        <Add />
+        Ajouter une catégorie
+      </SC.AddCategory>
     </SC.Nav>
   )
 }

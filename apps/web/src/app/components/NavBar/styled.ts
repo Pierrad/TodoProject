@@ -1,4 +1,4 @@
-import { Drawer, List, ListItem, ListItemIcon } from '@mui/material'
+import { Button, Drawer, List, ListItem, ListItemIcon } from '@mui/material'
 import styled from 'styled-components'
 
 export const Nav = styled(Drawer)`
@@ -18,7 +18,21 @@ export const NavListItem = styled(ListItem)<{ active: boolean }>`
   border-radius: 0.25rem;
 `
 
+export const NoLink = styled.div`
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
+`
+
 export const Icon = styled(ListItemIcon)`
   min-width: 0;
   margin-right: 1rem;  
+`
+
+export const AddCategory = styled(Button)`
+  display: flex;
+  align-items: center;
+  & svg {
+    margin-right: 0.5rem;
+  }
 `

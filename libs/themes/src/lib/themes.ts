@@ -20,6 +20,10 @@ export const theme = (mode: PaletteMode) => ({
                 default: '#F9F7F7',
                 paper: '#fff',
                 link: '#c6defbb0',
+                hover: '#e8e7e7',
+            },
+            error: {
+                main: '#FF0000',
             },
         } : {
             primary: {
@@ -36,6 +40,10 @@ export const theme = (mode: PaletteMode) => ({
                 default: '#222831',
                 paper: '#393E46',
                 link: '#c6defbb0',
+                hover: '#e8e7e7',
+            },
+            error: {
+                main: '#FF0000',
             },
         }),
     },

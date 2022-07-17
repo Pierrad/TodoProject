@@ -29,7 +29,7 @@ const Dashboard = () => {
   return (
     <div>
       <TaskBoard
-        title="My todo list"
+        title="Mes tâches"
         tasks={tasks}
         completedTasks={tasks}
       />

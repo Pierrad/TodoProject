@@ -7,7 +7,14 @@
     "add": "Add",
     "add_task_name_placeholder": "Example: Buy milk",
     "add_task_description_placeholder": "Description",
+    "navBar_contextMenu_add": "Add",
     "navBar_contextMenu_edit": "Edit",
-    "navBar_contextMenu_delete": "Delete"
+    "navBar_contextMenu_delete": "Delete",
+    "navBar_contextMenu_add_group": "Add group",
+    "navBar_contextMenu_edit_group": "Edit group",
+    "navBar_contextMenu_delete_group": "Delete group",
+    "navBar_contextMenu_add_category": "Add category",
+    "navBar_contextMenu_edit_category": "Edit category",
+    "navBar_contextMenu_delete_category": "Delete category"
   }
 }

@@ -7,7 +7,14 @@
     "add": "Ajouter",
     "add_task_name_placeholder": "Ex: Réviser le cours de HTML",
     "add_task_description_placeholder": "Description",
+    "navBar_contextMenu_add": "Ajouter",
     "navBar_contextMenu_edit": "Modifier",
-    "navBar_contextMenu_delete": "Supprimer"
+    "navBar_contextMenu_delete": "Supprimer",
+    "navBar_contextMenu_add_group": "Ajouter un groupe",
+    "navBar_contextMenu_edit_group": "Modifier le groupe",
+    "navBar_contextMenu_delete_group": "Supprimer le groupe",
+    "navBar_contextMenu_add_category": "Ajouter une categorie",
+    "navBar_contextMenu_edit_category": "Modifier la categorie",
+    "navBar_contextMenu_delete_category": "Supprimer la categorie"
   }
 }

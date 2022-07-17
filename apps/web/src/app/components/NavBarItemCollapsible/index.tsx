@@ -3,9 +3,12 @@ import { NavBarItemProps } from '../NavBarItem'
 import { ExpandLess, ExpandMore } from '@mui/icons-material'
 import { MenuItem } from '@mui/material'
 import { useTranslation } from 'react-i18next'
+import ContextMenu from '../ContextMenu'
+import ManageCategoryDialog from '../ManageCategoryDialog'
+import ManageGroupDialog from '../ManageGroupDialog'
+
 
 import * as SC from './styled'
-import ContextMenu from '../ContextMenu'
 
 type NavBarItemCollapsibleProps = {
   className?: string,
@@ -20,6 +23,8 @@ const NavBarItemCollapsible = (props: NavBarItemCollapsibleProps) => {
     mouseX: number
     mouseY: number
   } | null>(null)
+  const [manageCategoryDialogOpen, setManageCategoryDialogOpen] = useState(false)
+  const [manageGroupDialogOpen, setManageGroupDialogOpen] = useState(false)
   const { t } = useTranslation()
 
   useEffect(() => {
@@ -30,7 +35,9 @@ const NavBarItemCollapsible = (props: NavBarItemCollapsibleProps) => {
 
 
   const handleClick = () => {
-    setOpen(!open)
+    if (contextMenu === null) {
+      setOpen(!open)
+    }
   }
 
   const handleContextMenu = (event: React.MouseEvent) => {
@@ -68,7 +75,11 @@ const NavBarItemCollapsible = (props: NavBarItemCollapsibleProps) => {
         open={contextMenu}
         onClose={handleClose}
       >
-        <MenuItem onClick={handleClose}>
+        <MenuItem onClick={() => setManageCategoryDialogOpen(true)}>
+          <SC.AddIcon />
+          {t('navBar_contextMenu_add')}
+        </MenuItem>
+        <MenuItem onClick={() => setManageGroupDialogOpen(true)}>
           <SC.EditIcon />
           {t('navBar_contextMenu_edit')}
         </MenuItem>
@@ -77,6 +88,16 @@ const NavBarItemCollapsible = (props: NavBarItemCollapsibleProps) => {
           {t('navBar_contextMenu_delete')}
         </SC.MenuItemDelete>
       </ContextMenu>
+      <ManageGroupDialog
+        open={manageGroupDialogOpen}
+        onClose={() => setManageGroupDialogOpen(false)}
+        title={t('navBar_contextMenu_edit_group')}
+      />
+      <ManageCategoryDialog
+        open={manageCategoryDialogOpen}
+        onClose={() => setManageCategoryDialogOpen(false)}
+        title={t('navBar_contextMenu_add_category')}
+      />
     </SC.NavListItem>
   )
 }

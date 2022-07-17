@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import { Collapse, List, ListItem, ListItemIcon, ListItemText, MenuItem } from '@mui/material'
-import { Delete, Edit } from '@mui/icons-material'
+import { Add, Delete, Edit } from '@mui/icons-material'
 
 import NavBarItem from '../NavBarItem'
 
@@ -38,6 +38,10 @@ export const Item = styled(NavBarItem)``
 
 export const MenuItemDelete = styled(MenuItem)`
   color: ${({ theme }) => theme.palette.error.main};
+`
+
+export const AddIcon = styled(Add)`
+  margin-right: 1rem;
 `
 
 export const EditIcon = styled(Edit)`

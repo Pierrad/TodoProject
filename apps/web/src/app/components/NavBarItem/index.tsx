@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import ContextMenu from '../ContextMenu'
 import Link from '../Link'
+import ManageCategoryDialog from '../ManageCategoryDialog'
 
 import * as SC from './styled'
 
@@ -21,6 +22,7 @@ const NavBarItem = (props: NavBarItemProps) => {
     mouseX: number
     mouseY: number
   } | null>(null)
+  const [manageCategoryDialogOpen, setManageCategoryDialogOpen] = useState(false)
   const { t } = useTranslation()
 
   const handleContextMenu = (event: React.MouseEvent) => {
@@ -52,7 +54,7 @@ const NavBarItem = (props: NavBarItemProps) => {
         open={contextMenu}
         onClose={handleClose}
         >
-          <MenuItem onClick={handleClose}>
+          <MenuItem onClick={() => setManageCategoryDialogOpen(true)}>
             <SC.EditIcon />
             {t('navBar_contextMenu_edit')}
           </MenuItem>
@@ -62,6 +64,11 @@ const NavBarItem = (props: NavBarItemProps) => {
           </SC.MenuItemDelete>
         </ContextMenu>
       )}
+      <ManageCategoryDialog
+        open={manageCategoryDialogOpen}
+        onClose={() => setManageCategoryDialogOpen(false)}
+        title={t('navBar_contextMenu_edit_category')}
+      />
     </SC.NavListItem>
   )
 }

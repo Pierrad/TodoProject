@@ -12,8 +12,8 @@ export function App() {
     <React.Fragment>
       <CssBaseline />
       <GlobalStyles />
-      <StyledThemeProvider theme={muiTheme()}>
-        <ThemeProvider theme={muiTheme()}>
+      <StyledThemeProvider theme={muiTheme('light')}>
+        <ThemeProvider theme={muiTheme('light')}>
           <BrowserRouter>
             <Layout />
           </BrowserRouter>

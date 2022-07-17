@@ -1,14 +1,15 @@
-import React from 'react'
-import { Button, useMediaQuery, useTheme } from '@mui/material'
+import React, { useState } from 'react'
+import { useMediaQuery, useTheme } from '@mui/material'
 import HomeIcon from '@mui/icons-material/Home'
 import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted'
 import { useLocation } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import NavBarItem from '../NavBarItem'
 import NavBarItemCollapsible from '../NavBarItemCollapsible'
+import { Add } from '@mui/icons-material'
+import ManageCategoryDialog from '../ManageCategoryDialog'
 
 import * as SC from './styled'
-import { Add } from '@mui/icons-material'
 
 const drawerWidth = 240;
 
@@ -19,10 +20,11 @@ type NavBarProps = {
 
 const NavBar = (props: NavBarProps) => {
   const { className, open,  } = props
+  const [manageGroupDialogOpen, setManageGroupDialogOpen] = useState(false)
   const location = useLocation()
   const { t } = useTranslation()
   const theme = useTheme()
-  const isDesktop = useMediaQuery(theme.breakpoints.up('sm'));
+  const isDesktop = useMediaQuery(theme.breakpoints.up('sm'))
 
 
   return (
@@ -41,7 +43,12 @@ const NavBar = (props: NavBarProps) => {
       className={className}
     >
       <SC.NavList>
-        <NavBarItem isActive={location.pathname === '/dashboard'} to="/dashboard" label={t('dashboard')} icon={<HomeIcon />} />
+        <NavBarItem
+          isActive={location.pathname === '/dashboard'}
+          to="/dashboard"
+          label={t('dashboard')}
+          icon={<HomeIcon />}
+        />
         <NavBarItemCollapsible
           label="IUT"
           items={
@@ -71,10 +78,15 @@ const NavBar = (props: NavBarProps) => {
           }
         />
       </SC.NavList>
-      <SC.AddCategory variant="text">
+      <SC.AddCategory variant="text" onClick={() => setManageGroupDialogOpen(true)}>
         <Add />
-        Ajouter une catégorie
+        {t('navBar_contextMenu_add_group')}
       </SC.AddCategory>
+      <ManageCategoryDialog
+        open={manageGroupDialogOpen}
+        onClose={() => setManageGroupDialogOpen(false)}
+        title={t('navBar_contextMenu_add_group')}
+      />
     </SC.Nav>
   )
 }

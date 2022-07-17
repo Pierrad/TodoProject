@@ -1,8 +1,8 @@
-import { createTheme } from "@mui/material"
+import { createTheme, PaletteMode } from "@mui/material"
 import { theme } from '@todo-project/themes'
 
-export const muiTheme = () => {
-  const customTheme = theme('light')
+export const muiTheme = (mode: PaletteMode) => {
+  const customTheme = theme(mode)
   return createTheme({
     ...customTheme,
     components: {

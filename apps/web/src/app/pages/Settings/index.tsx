@@ -59,6 +59,7 @@ const Settings = () => {
               color="primary"
             >
               {t('settings_user_change_picture')}
+              <input hidden accept="image/*" multiple type="file" />
             </SC.ActionButton>
           </SC.UserAvatarBox>
           <SC.UserInfo>

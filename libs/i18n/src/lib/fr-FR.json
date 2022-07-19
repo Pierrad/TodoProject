@@ -15,6 +15,18 @@
     "navBar_contextMenu_delete_group": "Supprimer le groupe",
     "navBar_contextMenu_add_category": "Ajouter une categorie",
     "navBar_contextMenu_edit_category": "Modifier la categorie",
-    "navBar_contextMenu_delete_category": "Supprimer la categorie"
+    "navBar_contextMenu_delete_category": "Supprimer la categorie",
+    "settings_user_change_picture": "Changer la photo",
+    "settings_user_save": "Sauvegarder",
+    "settings_user_input_name_label": "Votre nom",
+    "settings_user_input_email_label": "Votre email",
+    "settings_front_language_label": "Votre langue",
+    "settings_front_language_en": "Anglais",
+    "settings_front_language_fr": "Français",
+    "settings_front_theme_label": "Votre thème",
+    "settings_front_theme_light": "Clair",
+    "settings_front_theme_dark": "Foncé",
+    "settings_statistics_label": "Nombre de tâches complétées par catégorie",
+    "settings_statistics_select_group": "Groupe"
   }
 }

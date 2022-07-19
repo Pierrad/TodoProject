@@ -8,7 +8,7 @@ export const theme = (mode: PaletteMode) => ({
         ...(mode === "light" ? {
             primary: {
                 main: '#3F72AF',
-                contrastText: '#000',
+                contrastText: '#FFF',
             },
             secondary: {
                 main: '#DBE2EF'
@@ -29,7 +29,7 @@ export const theme = (mode: PaletteMode) => ({
         } : {
             primary: {
                 main: '#00ADB5',
-                contrastText: '#fff',
+                contrastText: '#000',
             },
             secondary: {
                 main: '#393E46'

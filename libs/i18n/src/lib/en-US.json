@@ -15,6 +15,18 @@
     "navBar_contextMenu_delete_group": "Delete group",
     "navBar_contextMenu_add_category": "Add category",
     "navBar_contextMenu_edit_category": "Edit category",
-    "navBar_contextMenu_delete_category": "Delete category"
+    "navBar_contextMenu_delete_category": "Delete category",
+    "settings_user_change_picture": "Change avatar",
+    "settings_user_save": "Save",
+    "settings_user_input_name_label": "Your name",
+    "settings_user_input_email_label": "Your email",
+    "settings_front_language_label": "Your language",
+    "settings_front_language_en": "English",
+    "settings_front_language_fr": "French",
+    "settings_front_theme_label": "Your theme",
+    "settings_front_theme_light": "Light",
+    "settings_front_theme_dark": "Dark",
+    "settings_statistics_label": "Number of tasks completed by category",
+    "settings_statistics_select_group": "Group"
   }
 }

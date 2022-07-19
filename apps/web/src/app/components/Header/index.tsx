@@ -1,6 +1,8 @@
 import React from 'react'
 import { AppBar, Avatar, IconButton, useTheme } from '@mui/material'
-import { ArrowBack, ArrowForward, Brightness4, Brightness7, Flag, Settings } from '@mui/icons-material';
+import { ArrowBack, ArrowForward, Brightness4, Brightness7, Flag, Settings } from '@mui/icons-material'
+import { useNavigate } from 'react-router-dom'
+
 
 import * as SC from './styled'
 
@@ -13,7 +15,12 @@ type HeaderProps = {
 const Header = (props: HeaderProps) => {
   const { className, open, onMenuClick } = props
   const theme = useTheme()
+  const navigate = useNavigate()
 
+
+  const navigateToSettings = () => {
+    return navigate('/settings')
+  }
 
   return (
     <AppBar position="fixed" className={className}>
@@ -33,7 +40,7 @@ const Header = (props: HeaderProps) => {
           <IconButton color="secondary">
             {theme.palette.mode === 'dark' ? <Brightness7 /> : <Brightness4 />}
           </IconButton>
-          <IconButton color="secondary">
+          <IconButton color="secondary" onClick={navigateToSettings}>
             <Settings />
           </IconButton>
           <Avatar
@@ -41,7 +48,6 @@ const Header = (props: HeaderProps) => {
             alt="avatar"
           />
         </SC.Right>
-        
       </SC.Wrapper>
     </AppBar>
   )

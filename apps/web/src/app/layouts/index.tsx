@@ -1,7 +1,9 @@
 import React, { useState } from 'react'
 import { Route, Routes } from 'react-router-dom'
+
 import Dashboard from '../pages/Dashboard'
 import Home from '../pages/Home'
+import Settings from '../pages/Settings'
 
 import * as SC from './styled'
 
@@ -27,6 +29,7 @@ const Layout = () => {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/settings" element={<Settings />} />
           </Routes>
         </SC.Content>
       </SC.Main>

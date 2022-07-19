@@ -7,7 +7,7 @@ import { useTranslation } from 'react-i18next'
 import NavBarItem from '../NavBarItem'
 import NavBarItemCollapsible from '../NavBarItemCollapsible'
 import { Add } from '@mui/icons-material'
-import ManageCategoryDialog from '../ManageCategoryDialog'
+import ManageGroupDialog from '../ManageGroupDialog'
 
 import * as SC from './styled'
 
@@ -64,14 +64,14 @@ const NavBar = (props: NavBarProps) => {
                 to: '/group/iut/2',
                 label: 'IUT 2',
                 icon: <FormatListBulletedIcon />,
-                isActive: location.pathname.includes('/iut/2'),
+                isActive: location.pathname.startsWith('/iut/2'),
                 canBeEdited: true,
               },
               {
                 to: '/group/iut/3',
                 label: 'IUT 3',
                 icon: <FormatListBulletedIcon />,
-                isActive: location.pathname.includes('/iut/3'),
+                isActive: location.pathname.startsWith('/iut/3'),
                 canBeEdited: true,
               },
             ]
@@ -82,7 +82,7 @@ const NavBar = (props: NavBarProps) => {
         <Add />
         {t('navBar_contextMenu_add_group')}
       </SC.AddCategory>
-      <ManageCategoryDialog
+      <ManageGroupDialog
         open={manageGroupDialogOpen}
         onClose={() => setManageGroupDialogOpen(false)}
         title={t('navBar_contextMenu_add_group')}

@@ -5,6 +5,8 @@
     "completedTasks": "Tâches terminées ({{count}})",
     "cancel": "Annuler",
     "add": "Ajouter",
+    "remove": "Supprimer",
+    "edit": "Editer",
     "add_task_name_placeholder": "Ex: Réviser le cours de HTML",
     "add_task_description_placeholder": "Description",
     "navBar_contextMenu_add": "Ajouter",

@@ -25,6 +25,7 @@ const NavBarItemCollapsible = (props: NavBarItemCollapsibleProps) => {
   } | null>(null)
   const [manageCategoryDialogOpen, setManageCategoryDialogOpen] = useState(false)
   const [manageGroupDialogOpen, setManageGroupDialogOpen] = useState(false)
+  const [toRemove, setToRemove] = useState(false)
   const { t } = useTranslation()
 
   useEffect(() => {
@@ -83,15 +84,22 @@ const NavBarItemCollapsible = (props: NavBarItemCollapsibleProps) => {
           <SC.EditIcon />
           {t('navBar_contextMenu_edit')}
         </MenuItem>
-        <SC.MenuItemDelete onClick={handleClose}>
+        <SC.MenuItemDelete onClick={() => {
+          setManageGroupDialogOpen(true)
+          setToRemove(true)
+        }}>
           <SC.DeleteIcon />
           {t('navBar_contextMenu_delete')}
         </SC.MenuItemDelete>
       </ContextMenu>
       <ManageGroupDialog
         open={manageGroupDialogOpen}
-        onClose={() => setManageGroupDialogOpen(false)}
-        title={t('navBar_contextMenu_edit_group')}
+        onClose={() => {
+          setManageGroupDialogOpen(false)
+          setToRemove(false)
+        }}
+        title={!toRemove ? t('navBar_contextMenu_edit_group') : t('navBar_contextMenu_delete_group')}
+        toRemove={toRemove}
       />
       <ManageCategoryDialog
         open={manageCategoryDialogOpen}

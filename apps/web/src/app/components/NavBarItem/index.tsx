@@ -23,6 +23,7 @@ const NavBarItem = (props: NavBarItemProps) => {
     mouseY: number
   } | null>(null)
   const [manageCategoryDialogOpen, setManageCategoryDialogOpen] = useState(false)
+  const [toRemove, setToRemove] = useState(false)
   const { t } = useTranslation()
 
   const handleContextMenu = (event: React.MouseEvent) => {
@@ -58,7 +59,10 @@ const NavBarItem = (props: NavBarItemProps) => {
             <SC.EditIcon />
             {t('navBar_contextMenu_edit')}
           </MenuItem>
-          <SC.MenuItemDelete onClick={handleClose}>
+          <SC.MenuItemDelete onClick={() => {
+            setManageCategoryDialogOpen(true)
+            setToRemove(true)
+          }}>
             <SC.DeleteIcon />
             {t('navBar_contextMenu_delete')}
           </SC.MenuItemDelete>
@@ -66,8 +70,12 @@ const NavBarItem = (props: NavBarItemProps) => {
       )}
       <ManageCategoryDialog
         open={manageCategoryDialogOpen}
-        onClose={() => setManageCategoryDialogOpen(false)}
-        title={t('navBar_contextMenu_edit_category')}
+        onClose={() => {
+          setManageCategoryDialogOpen(false)
+          setToRemove(false)
+        }}
+        title={!toRemove ? t('navBar_contextMenu_edit_category') : t('navBar_contextMenu_delete_category')}
+        toRemove={toRemove}
       />
     </SC.NavListItem>
   )

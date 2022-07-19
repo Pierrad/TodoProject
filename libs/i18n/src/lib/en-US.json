@@ -5,6 +5,8 @@
     "completedTasks": "Completed tasks ({{count}})",
     "cancel": "Cancel",
     "add": "Add",
+    "remove": "Remove",
+    "edit": "Edit",
     "add_task_name_placeholder": "Example: Buy milk",
     "add_task_description_placeholder": "Description",
     "navBar_contextMenu_add": "Add",

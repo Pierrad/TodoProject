@@ -54,24 +54,24 @@ const NavBar = (props: NavBarProps) => {
           items={
             [
               {
-                to: '/iut/1',
+                to: '/group/iut/1',
                 label: 'IUT 1',
                 icon: <FormatListBulletedIcon />,
-                isActive: location.pathname.startsWith('/iut/1'),
+                isActive: location.pathname.includes('/iut/1'),
                 canBeEdited: true,
               },
               {
-                to: '/iut/2',
+                to: '/group/iut/2',
                 label: 'IUT 2',
                 icon: <FormatListBulletedIcon />,
-                isActive: location.pathname.startsWith('/iut/2'),
+                isActive: location.pathname.includes('/iut/2'),
                 canBeEdited: true,
               },
               {
-                to: '/iut/3',
+                to: '/group/iut/3',
                 label: 'IUT 3',
                 icon: <FormatListBulletedIcon />,
-                isActive: location.pathname.startsWith('/iut/3'),
+                isActive: location.pathname.includes('/iut/3'),
                 canBeEdited: true,
               },
             ]

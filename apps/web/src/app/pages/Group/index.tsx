@@ -1,8 +1,10 @@
 import React from 'react'
+import { useLocation } from 'react-router-dom'
 import { TaskProps } from '../../components/Task'
 import TaskBoard from '../../components/TaskBoard'
 
-const Dashboard = () => {
+const Group = () => {
+  const location = useLocation()
   const tasks: TaskProps[] | null  = [
     {
       name: 'Task 1',
@@ -26,11 +28,13 @@ const Dashboard = () => {
       description: 'This is a task description',
     },
   ]
+
+  const category = location.pathname.split('/')[3]
   
   return (
     <div>
       <TaskBoard
-        title="Mes tâches"
+        title={`${category} - Mes tâches`}
         tasks={tasks}
         completedTasks={tasks}
       />
@@ -38,4 +42,4 @@ const Dashboard = () => {
   )
 }
 
-export default Dashboard
+export default Group

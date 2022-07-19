@@ -4,7 +4,7 @@ import { Typography } from '@mui/material'
 const Home = () => {
   return (
     <div>
-      <Typography variant="h1">Test</Typography>
+      <Typography variant="h1">Home</Typography>
     </div>
   )
 }

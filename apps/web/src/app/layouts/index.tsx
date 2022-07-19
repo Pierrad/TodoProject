@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { Route, Routes } from 'react-router-dom'
 
 import Dashboard from '../pages/Dashboard'
+import Group from '../pages/Group'
 import Home from '../pages/Home'
 import Settings from '../pages/Settings'
 
@@ -30,6 +31,7 @@ const Layout = () => {
             <Route path="/" element={<Home />} />
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/settings" element={<Settings />} />
+            <Route path="/group/:group/:category" element={<Group />} />
           </Routes>
         </SC.Content>
       </SC.Main>

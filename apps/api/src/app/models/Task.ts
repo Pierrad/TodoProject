@@ -25,9 +25,9 @@ const taskSchema = new Schema(
       ref: "User",
       required: true,
     },
-    group: {
+    category: {
       type: Schema.Types.ObjectId,
-      ref: "Group",
+      ref: "Category",
     },
   },
   { timestamps: true }

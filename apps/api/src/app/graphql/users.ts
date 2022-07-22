@@ -1,5 +1,9 @@
 import { User } from "../models";
 import bcrypt = require("bcrypt");
+import jwt = require("jsonwebtoken");
+import { pipeResolvers } from "graphql-resolvers";
+import { isAuthorized } from "../conf/middleware";
+
 
 const saltRounds = 10;
 
@@ -9,6 +13,7 @@ export const UserSchema = `
     username: String!
     email: String!
     password: String!
+    token: String
     createdAt: String!
   }
 `
@@ -27,14 +32,18 @@ export const UserOperation = `
 
   type Query {
     getUserByID(id: ID!): User
+    me: User
   }
 `;
 
 export const UserResolvers = {
   Query: {
-    getUserByID: async (_, { id }) => {
+    getUserByID: pipeResolvers(isAuthorized, async (_, { id }) => {
       return await User.findById(id);
-    }
+    }),
+    me: pipeResolvers(isAuthorized, async (parent) => {
+      return await User.findById(parent.id);
+    })
   },
   Mutation: {
     register: async (parent: unknown, args) => {
@@ -51,7 +60,12 @@ export const UserResolvers = {
       if (!user) {
         throw new Error("User not found");
       }
-      const isValid = await bcrypt.compare(password, user.password);
+      const isValid = bcrypt.compare(password, user.password);
+      user.token = jwt.sign({ id: user._id }, process.env['JWT_SECRET'], {
+        expiresIn: "24d"
+      });
+      await user.save();
+
       if (!isValid) {
         throw new Error("Invalid password");
       }

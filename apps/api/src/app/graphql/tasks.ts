@@ -1,5 +1,6 @@
 import { Task } from "../models";
-
+import { isAuthorized } from "../conf/middleware";
+import { pipeResolvers } from "graphql-resolvers";
 
 export const TaskSchema = `
   type Task {
@@ -9,7 +10,7 @@ export const TaskSchema = `
     status: Boolean!
     dueDate: String!
     user: User
-    group: Group
+    category: Category
     createdAt: String!
   }
 `
@@ -17,7 +18,7 @@ export const TaskSchema = `
 export const TaskOperation = `
   input TaskInput {
     userId: ID!
-    groupId: ID
+    categoryId: ID
     name: String!
     description: String!
     status: Boolean
@@ -33,35 +34,35 @@ export const TaskOperation = `
   type Query {
     getTaskByID(id: ID!): Task
     getTasksByUserID(userId: ID!): [Task]
-    getTasksByGroupID(groupId: ID!): [Task]
+    getTasksByCategoryID(categoryId: ID!): [Task]
   }
 `;
 
 export const TaskResolvers = {
   Query: {
-    getTaskByID: async (_, { id }) => {
+    getTaskByID: pipeResolvers(isAuthorized, async (_, { id }) => {
       return await Task.findById(id);
-    },
-    getTasksByUserID: async (_, { userId }) => {
+    }),
+    getTasksByUserID: pipeResolvers(isAuthorized, async (_, { userId }) => {
       return await Task.find({ user: userId });
-    },
-    getTasksByGroupID: async (_, { groupId }) => {
-      return await Task.find({ group: groupId });
-    },
+    }),
+    getTasksByCategoryID: pipeResolvers(isAuthorized, async (_, { categoryId }) => {
+      return await Task.find({ category: categoryId });
+    }),
   },
   Mutation: {
-    createTask: async (parent: unknown, args) => {
-      const { userId, groupId, name, description, status, dueDate } = args.task;
+    createTask: pipeResolvers(isAuthorized, async (parent: unknown, args) => {
+      const { userId, categoryId, name, description, status, dueDate } = args.task;
       return Task.create({
         name,
         description,
         status,
         dueDate,
         user: userId,
-        group: groupId,
+        category: categoryId,
       });
-    },
-    updateTask: async (parent: unknown, args) => {
+    }),
+    updateTask: pipeResolvers(isAuthorized, async (parent: unknown, args) => {
       const { id, task } = args;
       const { name, description, status, dueDate } = task;
       const taskToUpdate = await Task.findById(id);
@@ -82,8 +83,8 @@ export const TaskResolvers = {
       }
       await taskToUpdate.save();
       return taskToUpdate;
-    },
-    deleteTask: async (parent: unknown, args) => {
+    }),
+    deleteTask: pipeResolvers(isAuthorized, async (parent: unknown, args) => {
       const { id } = args;
       const taskToDelete = await Task.findById(id);
       if (!taskToDelete) {
@@ -91,6 +92,6 @@ export const TaskResolvers = {
       }
       await taskToDelete.remove();
       return taskToDelete;
-    }
+    }),
   }
 }

@@ -14,7 +14,8 @@
     "paths": {
       "@mui/styled-engine": ["./node_modules/@mui/styled-engine-sc"],
       "@todo-project/themes": ["libs/themes/src/index.ts"],
-      "@todo-project/i18n": ["libs/i18n/src/index.ts"]
+      "@todo-project/i18n": ["libs/i18n/src/index.ts"],
+      "@todo-project/redux": ["libs/redux/src/index.ts"]
     }
   },
   "files": [],

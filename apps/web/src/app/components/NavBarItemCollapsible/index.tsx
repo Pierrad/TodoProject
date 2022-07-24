@@ -44,8 +44,7 @@ const NavBarItemCollapsible = (props: NavBarItemCollapsibleProps) => {
   const handleContextMenu = (event: React.MouseEvent) => {
     event.preventDefault()
     setContextMenu(
-      contextMenu === null
-        ? {
+      contextMenu === null        ? {
             mouseX: event.clientX + 2,
             mouseY: event.clientY - 6,
           }

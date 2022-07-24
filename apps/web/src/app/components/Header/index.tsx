@@ -10,10 +10,11 @@ type HeaderProps = {
   className?: string,
   open: boolean,
   onMenuClick: () => void,
+  onThemeClick: () => void,
 }
 
 const Header = (props: HeaderProps) => {
-  const { className, open, onMenuClick } = props
+  const { className, open, onMenuClick, onThemeClick } = props
   const theme = useTheme()
   const navigate = useNavigate()
 
@@ -37,7 +38,7 @@ const Header = (props: HeaderProps) => {
           <IconButton color="secondary">
             <Flag />
           </IconButton>
-          <IconButton color="secondary">
+          <IconButton onClick={onThemeClick} color="secondary">
             {theme.palette.mode === 'dark' ? <Brightness7 /> : <Brightness4 />}
           </IconButton>
           <IconButton color="secondary" onClick={navigateToSettings}>

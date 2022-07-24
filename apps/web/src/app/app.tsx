@@ -1,19 +1,29 @@
 import React from 'react'
-import { GlobalStyles } from '@todo-project/themes'
 import { ThemeProvider } from '@mui/material/styles'
 import { ThemeProvider as StyledThemeProvider } from 'styled-components'
-import Layout from './layouts'
-import { BrowserRouter } from 'react-router-dom'
-import { muiTheme } from '../themes'
 import { CssBaseline } from '@mui/material'
+import { BrowserRouter } from 'react-router-dom'
+import { connect } from 'react-redux'
+import { PaletteMode } from '@mui/material'
 
-export function App() {
+
+import { GlobalStyles } from '@todo-project/themes'
+import Layout from './layouts'
+import { muiTheme } from '../themes'
+
+type AppProps = {
+  theme: string
+}
+
+const App = (props: AppProps) => {
+  const { theme } = props
+
   return (
     <React.Fragment>
       <CssBaseline />
       <GlobalStyles />
-      <StyledThemeProvider theme={muiTheme('light')}>
-        <ThemeProvider theme={muiTheme('light')}>
+      <StyledThemeProvider theme={muiTheme(theme as PaletteMode)}>
+        <ThemeProvider theme={muiTheme(theme as PaletteMode)}>
           <BrowserRouter>
             <Layout />
           </BrowserRouter>
@@ -23,4 +33,12 @@ export function App() {
   )
 }
 
-export default App
+
+const mapStateToProps = (state: any) => ({
+  theme: state.app?.theme,
+})
+
+const mapDispatchToProps = (dispatch: () => void) => ({
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(App)

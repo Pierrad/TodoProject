@@ -6,6 +6,7 @@
     "i18n": "libs/i18n",
     "mobile": "apps/mobile",
     "mobile-e2e": "apps/mobile-e2e",
+    "models": "libs/models",
     "redux": "libs/redux",
     "themes": "libs/themes",
     "web": "apps/web",

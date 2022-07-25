@@ -8,6 +8,8 @@ import { PaletteMode } from '@mui/material'
 
 
 import { GlobalStyles } from '@todo-project/themes'
+import { GlobalStateType } from '@todo-project/models'
+
 import Layout from './layouts'
 import { muiTheme } from '../themes'
 
@@ -34,7 +36,7 @@ const App = (props: AppProps) => {
 }
 
 
-const mapStateToProps = (state: any) => ({
+const mapStateToProps = (state: GlobalStateType) => ({
   theme: state.app?.theme,
 })
 

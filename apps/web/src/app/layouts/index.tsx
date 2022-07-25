@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
 import { Route, Routes } from 'react-router-dom'
+import { connect } from 'react-redux'
 
-import { SET_THEME } from '@todo-project/redux';
-
+import { SWITCH_LANGUAGE, SWITCH_THEME } from "@todo-project/redux";
+import { DispatchType, GlobalStateType } from "@todo-project/models";
 
 import Dashboard from '../pages/Dashboard'
 import Group from '../pages/Group'
@@ -10,23 +11,22 @@ import Home from '../pages/Home'
 import Settings from '../pages/Settings'
 
 import * as SC from './styled'
-import { connect } from 'react-redux'
 
 type LayoutProps = {
-  theme: string
-  switchTheme: (value: string) => void
+  switchTheme: () => void
+  setLanguage: (value: string) => void
 }
 
 const Layout = (props: LayoutProps) => {
-  const { theme, switchTheme } = props
+  const { switchTheme, setLanguage } = props
   const [open, setOpen] = useState(true)
 
   const handleSwitchTheme = () => {
-    if (theme === 'light') {
-      switchTheme('dark')
-    } else {
-      switchTheme('light')
-    }
+    switchTheme()
+  }
+
+  const handleLanguageChange = (value: string) => {
+    setLanguage(value)
   }
 
   const onMenuClick = () => {
@@ -39,6 +39,7 @@ const Layout = (props: LayoutProps) => {
         onMenuClick={onMenuClick}
         open={open}
         onThemeClick={handleSwitchTheme}
+        onLanguageClick={handleLanguageChange}
       />
       <SC.Main open={open}>
         <SC.Navigation
@@ -58,17 +59,12 @@ const Layout = (props: LayoutProps) => {
   )
 }
 
-const mapStateToProps = (state: any) => ({
-  theme: state.app?.theme,
+const mapStateToProps = (state: GlobalStateType) => ({
 })
 
-type DispatchType = {
-  type: string
-  payload: any
-}
-
-const mapDispatchToProps = (dispatch: (obj: DispatchType) => void) => ({
-  switchTheme: (value: string) => dispatch({ type: SET_THEME, payload: value }),
+const mapDispatchToProps = (dispatch: (action: DispatchType) => void) => ({
+  switchTheme: () => dispatch({ type: SWITCH_THEME }),
+  setLanguage: (language: string) => dispatch({ type: SWITCH_LANGUAGE, payload: language }),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Layout)

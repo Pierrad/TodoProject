@@ -1,9 +1,12 @@
 import { StrictMode } from 'react'
 import * as ReactDOM from 'react-dom/client'
-import './app/i18n/i18n'
-import App from './app/app'
-import { store } from "@todo-project/redux";
 import { Provider as ReduxProvider } from 'react-redux'
+
+import App from './app/app'
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import { i18n } from '@todo-project/i18n'
+import { store } from "@todo-project/redux";
+
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement

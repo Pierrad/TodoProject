@@ -1,2 +1,3 @@
 export * from './lib/store'
-export * from './lib/actions/app'
+// actions
+export * from './lib/app/actions'

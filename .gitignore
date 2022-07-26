@@ -105,3 +105,5 @@ apps/mobile-e2e/artifacts
 .vscode/
 
 apps/api/.env
+
+apps/web/.env

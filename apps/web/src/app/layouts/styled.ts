@@ -24,9 +24,9 @@ export const Header = styled(HeaderC)`
   background-color: ${({ theme }) => theme.palette.primary.main};
 `
 
-export const Main = styled.div<{ open: boolean }>`
+export const Main = styled.div<{ open: boolean; isAuthorized: boolean }>`
   flex-grow: 1;
-  margin-left: ${({ open }) => (open ? drawerWidth : 0)}px;
+  margin-left: ${({ open, isAuthorized }) => (isAuthorized ? open ? drawerWidth : 0 : 0)}px;
 `
 
 export const Navigation = styled(NavBar)<{ open: boolean }>`
@@ -34,12 +34,12 @@ export const Navigation = styled(NavBar)<{ open: boolean }>`
   margin-left: ${drawerWidth}px;
 `
 
-export const Content = styled.div`
+export const Content = styled.div<{ isAuthorized: boolean }>`
   flex-grow: 1;
-  margin-top: 64px;
-  padding: 24px;
+  margin-top: ${({ isAuthorized }) => (isAuthorized ? 64 : 0)}px;
+  padding: ${({ isAuthorized }) => (isAuthorized ? '24px' : 0)};
   background-color: ${({ theme }) => theme.palette.background.default};
-  min-height: calc(100vh - 64px);
+  min-height: ${({ isAuthorized }) => (isAuthorized ? 'calc(100vh - 64px)' : '100vh')};
   /* max-width: 1080px;
   margin-left: auto;
   margin-right: auto; */

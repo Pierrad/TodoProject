@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import { Route, Routes } from 'react-router-dom'
+import React, { useEffect, useState } from 'react'
+import { Route, Routes, useLocation } from 'react-router-dom'
 import { connect } from 'react-redux'
 
 import { SWITCH_LANGUAGE, SWITCH_THEME } from "@todo-project/redux";
@@ -9,6 +9,8 @@ import Dashboard from '../pages/Dashboard'
 import Group from '../pages/Group'
 import Home from '../pages/Home'
 import Settings from '../pages/Settings'
+import SignIn from '../pages/SignIn';
+import SignUp from '../pages/SignUp';
 
 import * as SC from './styled'
 
@@ -20,6 +22,14 @@ type LayoutProps = {
 const Layout = (props: LayoutProps) => {
   const { switchTheme, setLanguage } = props
   const [open, setOpen] = useState(true)
+  const [isAuthorized, setIsAuthorized] = useState(true)
+  const location = useLocation()
+
+  useEffect(() => {
+    if (location.pathname === '/login' || location.pathname === '/register') {
+      setIsAuthorized(false)
+    }
+  }, [location])      
 
   const handleSwitchTheme = () => {
     switchTheme()
@@ -35,19 +45,25 @@ const Layout = (props: LayoutProps) => {
 
   return (
     <SC.Container>
-      <SC.Header
-        onMenuClick={onMenuClick}
-        open={open}
-        onThemeClick={handleSwitchTheme}
-        onLanguageClick={handleLanguageChange}
-      />
-      <SC.Main open={open}>
-        <SC.Navigation
+      {isAuthorized && (
+        <SC.Header
+          onMenuClick={onMenuClick}
           open={open}
+          onThemeClick={handleSwitchTheme}
+          onLanguageClick={handleLanguageChange}
         />
-        <SC.Content>
+      )}
+      <SC.Main open={open} isAuthorized={isAuthorized}>
+        {isAuthorized && (
+          <SC.Navigation
+            open={open}
+          />
+        )}
+        <SC.Content isAuthorized={isAuthorized}>
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/login" element={<SignIn />} />
+            <Route path="/register" element={<SignUp />} />	
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/settings" element={<Settings />} />
             <Route path="/group/:group/:category" element={<Group />} />

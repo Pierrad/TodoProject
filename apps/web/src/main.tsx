@@ -17,7 +17,7 @@ const root = ReactDOM.createRoot(
 root.render(
   <StrictMode>
     <ReduxProvider store={store} >
-      <ApolloProvider client={getClient(process.env['API_GRAPHQL_ENDPOINT'] ?? '')}>
+      <ApolloProvider client={getClient(process.env['NX_API_GRAPHQL_ENDPOINT'] ?? '')}>
         <App />
       </ApolloProvider>
     </ReduxProvider>

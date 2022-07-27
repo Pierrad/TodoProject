@@ -1,6 +1,6 @@
 import { ApolloClient, DefaultOptions, InMemoryCache } from '@apollo/client';
 
-const defaultOptions: DefaultOptions = {
+export const defaultOptions: DefaultOptions = {
   watchQuery: {
     fetchPolicy: 'no-cache',
     errorPolicy: 'ignore',
@@ -19,4 +19,9 @@ export const getClient = (url: string) => {
     queryDeduplication: false,
     defaultOptions,
   });
+}
+
+export const defaultConfig = {
+  fetchPolicy: 'no-cache',
+  errorPolicy: 'all',
 }

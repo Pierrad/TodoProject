@@ -6,7 +6,6 @@ import { BrowserRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { PaletteMode } from '@mui/material'
 
-
 import { GlobalStyles } from '@todo-project/themes'
 import { GlobalStateType } from '@todo-project/models'
 

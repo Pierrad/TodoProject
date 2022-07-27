@@ -1,31 +1,30 @@
 {
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "libs/redux/src",
+  "sourceRoot": "libs/utils/src",
   "projectType": "library",
   "targets": {
     "build": {
       "executor": "@nrwl/js:tsc",
       "outputs": ["{options.outputPath}"],
       "options": {
-        "outputPath": "dist/libs/redux",
-        "tsConfig": "libs/redux/tsconfig.lib.json",
-        "packageJson": "libs/redux/package.json",
-        "main": "libs/redux/src/index.ts",
-        "assets": ["libs/redux/*.md"]
+        "outputPath": "dist/libs/utils",
+        "main": "libs/utils/src/index.ts",
+        "tsConfig": "libs/utils/tsconfig.lib.json",
+        "assets": ["libs/utils/*.md"]
       }
     },
     "lint": {
       "executor": "@nrwl/linter:eslint",
       "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": ["libs/redux/**/*.ts"]
+        "lintFilePatterns": ["libs/utils/**/*.ts"]
       }
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/libs/redux"],
+      "outputs": ["coverage/libs/utils"],
       "options": {
-        "jestConfig": "libs/redux/jest.config.ts",
+        "jestConfig": "libs/utils/jest.config.ts",
         "passWithNoTests": true
       }
     }

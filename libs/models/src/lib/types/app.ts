@@ -14,7 +14,12 @@ export type ApiStateType = {
   token: string | null
 }
 
+export type UserStateType = {
+  user: Record<string, unknown> | null
+}
+
 export type GlobalStateType = {
   app: AppStateType
   api: ApiStateType
+  user: UserStateType
 }

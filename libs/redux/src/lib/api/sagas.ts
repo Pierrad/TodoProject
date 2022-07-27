@@ -1,12 +1,16 @@
 import { MutationOptions, QueryOptions } from "@apollo/client"
-import { ApiStateType } from "@todo-project/models"
 import { call, put, select } from "redux-saga/effects"
 
-import { getClient } from "../graphql/client"
+import { ApiStateType } from "@todo-project/models"
+import { ResponseGenerator } from '@todo-project/models';
+
+import { defaultConfig, getClient } from "../graphql/client"
 
 import * as ApiSelectors from "./selectors"
 
 export type ApiTransformer = (data: any) => any
+
+
 
 function *getHeaders(): any {
   const headers = yield select(ApiSelectors.headers)
@@ -22,11 +26,13 @@ export function *query(service: {
   query: QueryOptions
   transformer?: (data: any) => any
 }) {
-  return yield APICall(
+  const result: ResponseGenerator = yield APICall(
     getClient().query,
     service.query,
     service?.transformer
   )
+
+  return result
 }
 
 
@@ -34,11 +40,13 @@ export function *mutate(service: {
   mutation: MutationOptions
   transformer?: (data: any) => any
 }) {
-  return yield APICall(
+  const result: ResponseGenerator =  yield APICall(
     getClient().mutate,
     service.mutation,
     service?.transformer
   )
+
+  return result
 }
 
 
@@ -48,7 +56,7 @@ function *transform(result: any, transformer?: ApiTransformer) {
     return result
   }
 
-  const data = yield call(transformer, result.data as any)
+  const data: ResponseGenerator = yield call(transformer, result.data as any)
 
   return { ...result, data }
 }
@@ -56,7 +64,7 @@ function *transform(result: any, transformer?: ApiTransformer) {
 function *APICall(method: any, service: any, transformer?: (data: any) => any) {
   const headers: ApiStateType = yield call(getHeaders)
 
-  let result
+  let result: ResponseGenerator
   try {
     result = yield call(method, {
       ...defaultConfig,
@@ -85,10 +93,12 @@ function *APICall(method: any, service: any, transformer?: (data: any) => any) {
     console.error(`ApiSagas:`, result.errors)
   }
 
-  return yield call(
+  const res: unknown = yield call(
     transform,
     result,
     transformer || service?.transformer
   )
+
+  return res
 }
 

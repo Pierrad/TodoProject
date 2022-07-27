@@ -9,7 +9,6 @@
     "models": "libs/models",
     "redux": "libs/redux",
     "themes": "libs/themes",
-    "utils": "libs/utils",
     "web": "apps/web",
     "web-e2e": "apps/web-e2e"
   }

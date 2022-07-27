@@ -1,5 +1,5 @@
 import { MutationOptions, QueryOptions } from "@apollo/client"
-import { call, put, select } from "redux-saga/effects"
+import { call, select } from "redux-saga/effects"
 
 import { ApiStateType } from "@todo-project/models"
 import { ResponseGenerator } from '@todo-project/models';
@@ -9,7 +9,6 @@ import { defaultConfig, getClient } from "../graphql/client"
 import * as ApiSelectors from "./selectors"
 
 export type ApiTransformer = (data: any) => any
-
 
 
 function *getHeaders(): any {
@@ -27,7 +26,7 @@ export function *query(service: {
   transformer?: (data: any) => any
 }) {
   const result: ResponseGenerator = yield APICall(
-    getClient().query,
+    getClient(process.env["NX_API_GRAPHQL_ENDPOINT"] ?? '').query,
     service.query,
     service?.transformer
   )
@@ -41,7 +40,7 @@ export function *mutate(service: {
   transformer?: (data: any) => any
 }) {
   const result: ResponseGenerator =  yield APICall(
-    getClient().mutate,
+    getClient(process.env["NX_API_GRAPHQL_ENDPOINT"] ?? '').mutate,
     service.mutation,
     service?.transformer
   )

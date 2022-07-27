@@ -1,6 +1,6 @@
 import gql from 'graphql-tag';
 
-import { mutationServiceCreator } from '@todo-project/utils';
+import { mutationServiceCreator } from '../GraphqlHelpers';
 
 const mutation = gql`
   mutation Login($email: String!, $password: String!) {

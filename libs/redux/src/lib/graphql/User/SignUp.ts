@@ -1,10 +1,10 @@
 import gql from 'graphql-tag'
 
-import { mutationServiceCreator } from '@todo-project/utils'
+import { mutationServiceCreator } from '../GraphqlHelpers'
 
 const mutation = gql`
-  mutation Register($user: UserInput) {
-    register(user: $user) {
+  mutation Register($username: String!, $email: String!, $password: String!) {
+    register(username: $username, email: $email, password: $password) {
       username
       email
       password

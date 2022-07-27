@@ -19,14 +19,8 @@ export const UserSchema = `
 `
 
 export const UserOperation = `
-  input UserInput {
-    username: String!
-    email: String!
-    password: String!
-  }
-
   type Mutation {
-    register(user: UserInput): User
+    register(username: String!, email: String!, password: String!): User
     login(email: String!, password: String!): User
   }
 
@@ -47,7 +41,7 @@ export const UserResolvers = {
   },
   Mutation: {
     register: async (parent: unknown, args) => {
-      const { username, email, password } = args.user;
+      const { username, email, password } = args;
       if (await User.findOne({ email })) {
         throw new Error("Email already exists");
       }

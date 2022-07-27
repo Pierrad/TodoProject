@@ -1,6 +1,5 @@
 import {
   call,
-  put,
   takeLeading,
 } from 'redux-saga/effects'
 import { mutate } from '../api/sagas';
@@ -12,11 +11,8 @@ import { ResponseGenerator } from '@todo-project/models';
 // import * as userSelectors from './selectors'
 
 
-
 function* signIn({ payload }: { payload: { email: string, password: string }, type: string }) {
   const { email, password } = payload;
-
-  console.log(email, password);
 
   const result: ResponseGenerator = yield call(mutate, SignInMutation({
       email,
@@ -30,8 +26,6 @@ function* signIn({ payload }: { payload: { email: string, password: string }, ty
 
 function* signUp( { payload }: { payload: { username: string, email: string, password: string }, type: string }) {
   const { username, email, password } = payload;
-
-  console.log(username, email, password);
 
   const result: ResponseGenerator = yield call(mutate, SignUpMutation({
       username,

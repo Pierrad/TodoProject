@@ -107,3 +107,5 @@ apps/mobile-e2e/artifacts
 apps/api/.env
 
 apps/web/.env
+
+.env
